@@ -9,12 +9,10 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	protected Node<T> last;  // azkenengoaren erreferentzia
 	protected String deskr;  // deskribapena
 	protected int count;
-	protected String a;
 	public DoubleLinkedList() {
 		last = null;
 		deskr = "";
 		count = 0;
-		a="jon gay";
 	}
 	
 	public void setDeskr(String ize) {
