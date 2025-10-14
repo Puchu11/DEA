@@ -1,4 +1,4 @@
-package labo2;
+package prakt2;
 
 import java.util.Iterator;
 

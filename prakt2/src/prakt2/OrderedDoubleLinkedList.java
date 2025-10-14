@@ -1,4 +1,4 @@
-package labo2;
+package prakt2;
 
 public class OrderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements OrderedListADT<T> {
 	

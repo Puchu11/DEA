@@ -1,4 +1,4 @@
-package P2;
+package prakt2;
 
 public interface UnorderedListADT<T> extends ListADT<T> {
 	

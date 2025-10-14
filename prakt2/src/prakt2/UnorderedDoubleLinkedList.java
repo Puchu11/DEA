@@ -1,4 +1,4 @@
-package labo2;
+package prakt2;
 
 public class UnorderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements UnorderedListADT<T> {
 	

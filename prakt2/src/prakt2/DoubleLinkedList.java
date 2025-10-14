@@ -1,4 +1,4 @@
-package P2;
+package prakt2;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -9,7 +9,6 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	protected Node<T> last;  // azkenengoaren erreferentzia
 	protected String deskr;  // deskribapena
 	protected int count;
-
 	public DoubleLinkedList() {
 		last = null;
 		deskr = "";
@@ -23,7 +22,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	public String getDeskr() {
 	  return deskr;
 	}
-
+	
 	public T removeFirst() {
 	// listako lehen elementua kendu da
 	// Aurrebaldintza: 

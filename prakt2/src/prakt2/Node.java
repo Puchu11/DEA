@@ -1,4 +1,4 @@
-package labo2;
+package prakt2;
 
 	public class Node<T> {
 		public T data; 			// dato del nodo
