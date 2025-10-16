@@ -139,17 +139,18 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	// Egiazkoa bueltatuko du aurkituz gero, eta false bestela
   		// KODEA OSATU ETA KOSTUA KALKULATU      
 		if (isEmpty()) {return false;}
-		Node<T> current = last.next; // lehenengo elementura
-		while(current != last) {
-			if(current.data.equals(elem)) {
+		Iterator<T> it = iterator();
+		while(it.hasNext()) {
+			if(it.next().equals(elem)) {
 				return true; // Elementua aurkitu da
 			}
-			current = current.next; // Hurrengo elementura
-			
 		}
 		
 		return false; // Elementua ez da aurkitu
-		   }
+		
+	}// KOSTUA=O(n) kasu txarrenean, n=count;
+
+	
 
 	public T find(T elem) {
 		// Elementua bueltatuko du aurkituz gero, eta null bestela
@@ -178,8 +179,9 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 		}else {
 			return false;
 		}
+		//KOSTUA=KONSTANTEA O(1)
 	}
-	//KOSTUA=CONSTANTEA O(1)
+
 	public int size() { 
 	// KODEA OSATU ETA KOSTUA KALKULATU
 		return count;
@@ -192,24 +194,24 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	   private class ListIterator implements Iterator<T> { 
 		   
 		   private Node<T> current = last.next; // hasierako elementua
-	       private boolean atStart = true; // zerrendaren hasieran gauden ala ez
+	       private boolean Hasieran = true; // zerrendaren hasieran gauden ala ez
 	       public boolean hasNext()  { 
 	    	   if (isEmpty()) return false; // zerrenda hutsa bada
-	    	   return current != null && (atStart || current != last.next); 
+	    	   return current != null && (Hasieran || current != last.next); 
 	       }
 	       
 	       public T next() {
 	           if (!hasNext()) throw new NoSuchElementException();
 	           T elem = current.data;
 	           current = current.next; 
-	           atStart = false;
+	           Hasieran = false;
 	           return elem;
 	       }
 
 	       public void remove() { 
 	           throw new UnsupportedOperationException();  
 	       }
-		// KODEA OSATU 
+		
 	   } // private class
 		
 		

@@ -17,7 +17,7 @@ class DoubleLinkedListTest {
 
 	@After
 	public void tearDown() throws Exception {
-		list.;
+		list
 		System.out.println("Testak amaitu");
 	}
 
