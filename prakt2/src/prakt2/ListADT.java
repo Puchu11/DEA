@@ -34,5 +34,4 @@ public int size(); // Listako elementu-kopurua
 
 public Iterator<T> iterator(); // Listako elementuen iteradorea
 
-
 }

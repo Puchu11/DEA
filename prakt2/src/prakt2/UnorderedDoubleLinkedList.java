@@ -5,6 +5,12 @@ public class UnorderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements
 	public void addToFront(T elem) {
 	// hasieran gehitu
 		// KODEA OSATU ETA KOSTUA KALKULATU
+		Node<T> berria= new Node<T>(elem);
+		if(idEmpty()) {
+			last=berria;
+			last.next=last;
+			
+		}
 
 	}
 

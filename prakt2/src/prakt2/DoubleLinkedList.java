@@ -114,8 +114,8 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	public void removeAll(T elem) {
 	// Aurrebaldintza: 
 	// Balio zehatz baten agerpen guztiak ezabatzen ditu
-	
-		// KODEA OSATU ETA KOSTUA KALKULATU
+	// KODEA OSATU ETA KOSTUA KALKULATU
+		
     };
 
 	public T first() {
@@ -190,7 +190,25 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 
 	   // an iterator, doesn't implement remove() since it's optional 
 	   private class ListIterator implements Iterator<T> { 
+		   
+		   private Node<T> current = last.next; // hasierako elementua
+	       private boolean atStart = true; // zerrendaren hasieran gauden ala ez
+	       public boolean hasNext()  { 
+	    	   if (isEmpty()) return false; // zerrenda hutsa bada
+	    	   return current != null && (atStart || current != last.next); 
+	       }
+	       
+	       public T next() {
+	           if (!hasNext()) throw new NoSuchElementException();
+	           T elem = current.data;
+	           current = current.next; 
+	           atStart = false;
+	           return elem;
+	       }
 
+	       public void remove() { 
+	           throw new UnsupportedOperationException();  
+	       }
 		// KODEA OSATU 
 	   } // private class
 		
@@ -210,5 +228,4 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 			}	
 			return "DoubleLinkedList " + result + "]";
 		}
-
 }
