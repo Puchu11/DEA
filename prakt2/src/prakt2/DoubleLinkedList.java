@@ -27,22 +27,89 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	// listako lehen elementua kendu da
 	// Aurrebaldintza: 
 		// KODEA OSATU ETA KOSTUA KALKULATU
+		if(isEmpty()) {
+			throw new NoSuchElementException("Errorea: zerrenda hutsa");
+		}
+		Node<T> lehenengoa= last.next;
+		if(count==1) {
+			last=null;
+		}else {
+			last.next=lehenengoa.next;
+			lehenengoa.next.prev=last;
+		}
+		count--;
+		return lehenengoa.data;
+		//KOSTUA=CONSTANTEA O(1)
 	}
 
 	public T removeLast() {
-	// listako azken elementua kendu da
-	// Aurrebaldintza: 
-		// KODEA OSATU ETA KOSTUA KALKULATU
-    }
+		// listako azken elementua kendu da
+		// Aurrebaldintza: 
+			// KODEA OSATU ETA KOSTUA KALKULATU
+			if(isEmpty()) {
+				throw new NoSuchElementException("Errorea: zerrenda hutsa");
+			}
+			Node<T> azkena= last;
+			if(count==1) {
+				last=null;
+			}
+			else {
+				last.prev.next=last.next;
+				last.next.prev=last.prev;
+				last=last.prev;
+			}
+			count--;
+			return azkena.data;
+		}
+	//KOSTUA=CONSTANTEA O(1)
 
 
 	public T remove(T elem) {
-	// Aurrebaldintza: 
-	// Balio hori listan baldin badago, bere lehen agerpena ezabatuko dut. Kendutako objektuaren erreferentzia 
-        //  bueltatuko du (null ez baldin badago)
+		// Aurrebaldintza: 
+		// Balio hori listan baldin badago, bere lehen agerpena ezabatuko dut. Kendutako objektuaren erreferentzia 
+	        //  bueltatuko du (null ez baldin badago)
 
-		// KODEA OSATU ETA KOSTUA KALKULATU
-        };
+			// KODEA OSATU ETA KOSTUA KALKULATU
+			if (isEmpty()) {
+				throw new NoSuchElementException("Errorea: zerrenda hutsa");
+			}
+			Node<T> current = last.next; // lehenengo elementura
+			if(!contains(elem)) {
+				return null;
+			}else {
+				boolean aurkitua=false;
+				while(!aurkitua) {
+					if(current.data.equals(elem)) {
+						aurkitua=true;
+					}else {
+						current = current.next; // Hurrengo elementura
+					}
+				}
+				// Elementua aurkitu da
+				if(count==1) {
+					last=null;
+				}
+				//azkena bada
+				else if(current==last) {
+					last.prev.next=last.next;
+					last.next.prev=last.prev;
+					last=last.prev;
+				}
+				//lehenengoa bada
+				else if(current==last.next) {
+					last.next=current.next;
+					current.next.prev=last;
+				}
+				//erdian
+				else {
+					current.prev.next=current.next;
+					current.next.prev=current.prev;
+				}
+				count--;
+				return current.data; // Elementua aurkitu da
+			}
+			//KOSTUA=O(n) kasu txarrenean, n=count;
+	        };
 		
 	public void removeAll(T elem) {
 	// Aurrebaldintza: 
@@ -54,12 +121,14 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	public T first() {
 	// listako lehen elementua ematen du
 	   // KODEA OSATU ETA KOSTUA KALKULATU
+		return last.next.data;
 	}
 
 	public T last() {
-	// listako azken elementua ematen du
-	   // KODEA OSATU ETA KOSTUA KALKULATU
-	}
+		// listako azken elementua ematen du
+		   // KODEA OSATU ETA KOSTUA KALKULATU
+			return last.data;
+		}
 
 	public DoubleLinkedList<T> clone(){
 		// Zerrendaren kopia bat itzultzen du (ez du punteroa bikoizten)
@@ -68,26 +137,54 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 
 	public boolean contains(T elem) {
 	// Egiazkoa bueltatuko du aurkituz gero, eta false bestela
-		      if (isEmpty())
-		          return false;
-
-		      		// KODEA OSATU ETA KOSTUA KALKULATU
+  		// KODEA OSATU ETA KOSTUA KALKULATU      
+		if (isEmpty()) {return false;}
+		Node<T> current = last.next; // lehenengo elementura
+		while(current != last) {
+			if(current.data.equals(elem)) {
+				return true; // Elementua aurkitu da
+			}
+			current = current.next; // Hurrengo elementura
+			
+		}
+		
+		return false; // Elementua ez da aurkitu
 		   }
 
 	public T find(T elem) {
-	// Elementua bueltatuko du aurkituz gero, eta null bestela
+		// Elementua bueltatuko du aurkituz gero, eta null bestela
 
-		// KODEA OSATU ETA KOSTUA KALKULATU
-	}
+			// KODEA OSATU ETA KOSTUA KALKULATU
+			if (!contains(elem)) {return null;}
+			else {
+				Node<T> current = last.next; // lehenengo elementura
+				boolean aurkitua=false;
+				while(!aurkitua) {
+					if(current.data.equals(elem)) {
+						aurkitua=true;
+					}else {
+						current = current.next; // Hurrengo elementura
+					}
+				}
+				return current.data; // Elementua aurkitu da
+			}
+		}
 
 	public boolean isEmpty() { 
 	// KODEA OSATU ETA KOSTUA KALKULATU
+		if(count ==0) {
+			return true;
+			
+		}else {
+			return false;
+		}
 	}
-	
+	//KOSTUA=CONSTANTEA O(1)
 	public int size() { 
 	// KODEA OSATU ETA KOSTUA KALKULATU
+		return count;
 	}
-	
+	//KOTUA=KOSTANTEA O(1)
 	/** Return an iterator to the stack that iterates through the items . */ 
 	   public Iterator<T> iterator() { return new ListIterator(); } 
 
