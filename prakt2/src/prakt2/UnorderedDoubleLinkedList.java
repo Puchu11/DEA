@@ -45,9 +45,6 @@ public class UnorderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements
 		if(isEmpty()) {
 			throw new NoSuchElementException("Errorea: zerrenda hutsa");
 		}
-		if(!contains(target)) {
-			throw new NoSuchElementException("Errorea: target elementua ez dago zerrendan");
-		}
 		Node<T> berria =new Node<T>(elem);
 		Node<T> current= last.next;
 		boolean aurkitua=false;
@@ -61,14 +58,16 @@ public class UnorderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements
 					current.next.prev=berria;
 					berria.prev=current;
 					current.next=berria;
-					
+					count++;
 				}
-				count++;
 				aurkitua=true;
 			}else {
 				current=current.next;
 			}
-		}while(current!=last && !aurkitua) ;
+		}while(current!=last.next && !aurkitua);
+		if(!aurkitua) {
+			throw new NoSuchElementException("Errorea: ez dago elementu hori");
+		}
 	}//KOSTUA=LINEALA O(n) kasu txarrenean, n=count;
 
 }

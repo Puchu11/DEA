@@ -13,7 +13,6 @@ public class ProbaOrderedDoubleLinkedList {
 			l.add(0);
 			l.add(20);
 			l.remove(new Integer(7));
-
 			
 			System.out.print(" Lista ...............");
 			l.adabegiakInprimatu();
