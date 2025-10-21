@@ -197,6 +197,24 @@ public class ProbaDoubleLinkedList {
 		System.out.println("7? " + l.contains(7));
 		System.out.println("33? " + l.contains(33));
 		System.out.println("100? " + l.contains(100));
-
+		
+		//PROBA CLONE
+		System.out.println("");
+		System.out.println("CLONE PROBAK HASI................");
+		System.out.println("hasierako lista:");
+		visualizarNodos(l);
+		System.out.println("kopiatu lista:");
+		DoubleLinkedList<Integer> l3 = l.clone();
+		visualizarNodos((UnorderedDoubleLinkedList<Integer>) l3);
+		System.out.println("luzera:"+l3.size());
+		System.out.println("LISTA HUTSA CLONATU................");
+		System.out.println("hasierako lista:");
+		visualizarNodos(l2);
+		l3 = l2.clone();
+		System.out.println("kopiatu lista:");
+		visualizarNodos((UnorderedDoubleLinkedList<Integer>) l3);
+		System.out.println("luzera:"+l3.size());
+		System.out.println("CLONE PROBAK BUKATU................");
+		
 	}	
 }

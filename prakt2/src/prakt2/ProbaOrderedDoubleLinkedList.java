@@ -1,8 +1,24 @@
 package prakt2;
 
+import java.util.Iterator;
+
 public class ProbaOrderedDoubleLinkedList {	
+	public static void visualizarNodos(OrderedDoubleLinkedList<Integer> l) {
+		if(l.isEmpty()) {System.out.println("Zerrenda hutsa");}
+		else{
+			Iterator<Integer> it = l.iterator();
 		
-		public static void main(String[] args)  {
+			while (it.hasNext()) {
+				Integer num = it.next();
+				System.out.print(num);
+				System.out.print(" ");
+			}
+		}
+		System.out.println("");
+	}
+	
+		
+	public static void main(String[] args)  {
 			
 			OrderedDoubleLinkedList<Integer> l = new OrderedDoubleLinkedList<Integer>();
 			l.add(1);
@@ -12,10 +28,15 @@ public class ProbaOrderedDoubleLinkedList {
 			l.add(9);
 			l.add(0);
 			l.add(20);
-			l.remove(new Integer(7));
+			try {
+			l.remove(new Integer(7));}
+			catch(Exception e) {
+				System.out.println(e.getMessage());
+			}
+			
 			
 			System.out.print(" Lista ...............");
-			l.adabegiakInprimatu();
+			visualizarNodos(l);
 			System.out.println(" Elementu-kopurua: " + l.size());
 					
 			

@@ -155,7 +155,16 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	public DoubleLinkedList<T> clone(){
 		// Zerrendaren kopia bat itzultzen du (ez du punteroa bikoizten)
 	   // KODEA OSATU ETA KOSTUA KALKULATU		
-	} 
+		UnorderedDoubleLinkedList<T> kopia= new UnorderedDoubleLinkedList<T>();
+		if(!isEmpty()) {
+			Node<T> current= last.next;
+			do {
+				kopia.addToRear(current.data);
+				current=current.next;
+			}while(current!=last.next);
+		}
+		return kopia;
+	} //KOSTUA=O(n), n=count;
 
 	public boolean contains(T elem) {
 	// Egiazkoa bueltatuko du aurkituz gero, eta false bestela
