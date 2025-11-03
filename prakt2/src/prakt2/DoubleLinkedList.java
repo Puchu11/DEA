@@ -109,37 +109,34 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 			}
 			//KOSTUA=O(n) kasu txarrenean, n=count;
 	        };
-	public void removeAll(T elem) {
-		if (isEmpty()) {
-			throw new NoSuchElementException("Errorea: zerrenda hutsa");
-		}
-		Node<T> current = last.next; // Lehenengo elementura
-		int luzera=count;
-		while(count >0 && luzera>0) {
-			luzera--;
-			if (current.data.equals(elem)) {
-				if (count==1) {
-					last=null;
-					count--;
-				}
-				// Azkena bada
-				else if (current==last) {
-					removeLast();
-				}else if(current==last.next) {
-					removeFirst();
-					current=last.next;
-				}else {
-					Node<T> temp=current.next;
-					current.prev.next=current.next;
-					current.next.prev=current.prev;
-					current=temp;
-					count--;
-				}
-			}else {
-				current = current.next; // Hurrengo elementura
-			}
-		}
-	}
+	  public void removeAll(T elem) {
+	            if (isEmpty()) {
+	                throw new NoSuchElementException("Errorea: zerrenda hutsa");
+	            }
+
+	            Node<T> current = last.next;
+	            int originalCount = count;
+	            for (int i = 0; i < originalCount; i++) {
+	                Node<T> next = current.next;
+	                if (current.data.equals(elem)) {
+	                    if (count == 1) {
+	                        last = null;
+	                        count--;
+	                    } else if (current == last) {
+	                        removeLast();
+	                    } else if (current == last.next) {
+	                        removeFirst();
+	                    } else {
+	                        current.prev.next = current.next;
+	                        current.next.prev = current.prev;
+	                        count--;
+	                    }
+	                }
+	                current = next;
+	                if (isEmpty()) break;
+	            }
+	        }
+
 	public T first() {
 	// listako lehen elementua ematen du
 	   // KODEA OSATU ETA KOSTUA KALKULATU
@@ -155,11 +152,23 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	public DoubleLinkedList<T> clone(){
 		// Zerrendaren kopia bat itzultzen du (ez du punteroa bikoizten)
 	   // KODEA OSATU ETA KOSTUA KALKULATU		
-		UnorderedDoubleLinkedList<T> kopia= new UnorderedDoubleLinkedList<T>();
+		DoubleLinkedList<T> kopia= new UnorderedDoubleLinkedList<T>();
 		if(!isEmpty()) {
 			Node<T> current= last.next;
 			do {
-				kopia.addToRear(current.data);
+				Node<T> berria= new Node<T>(current.data);
+				if(kopia.isEmpty()) {
+					kopia.last=berria;
+					kopia.last.next=kopia.last;
+					kopia.last.prev=kopia.last;
+				}else {
+					 berria.next = kopia.last.next;
+		             kopia.last.next.prev = berria;
+		             berria.prev = kopia.last;
+		             kopia.last.next = berria;
+		              kopia.last = berria; 
+				}
+				kopia.count++;
 				current=current.next;
 			}while(current!=last.next);
 		}
