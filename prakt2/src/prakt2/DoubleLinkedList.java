@@ -9,6 +9,7 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 	protected Node<T> last;  // azkenengoaren erreferentzia
 	protected String deskr;  // deskribapena
 	protected int count;
+
 	public DoubleLinkedList() {
 		last = null;
 		deskr = "";
@@ -108,7 +109,8 @@ public class DoubleLinkedList<T> implements ListADT<T> {
 				return current.data; // Elementua aurkitu da
 			}
 			//KOSTUA=O(n) kasu txarrenean, n=count;
-	        };
+	        }
+
 	  public void removeAll(T elem) {
 	            if (isEmpty()) {
 	                throw new NoSuchElementException("Errorea: zerrenda hutsa");
