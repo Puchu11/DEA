@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class ArgitaelpenZerrenda {
@@ -240,11 +241,13 @@ public class ArgitaelpenZerrenda {
                 }
             }
 
-            // gorde argitalpen eta egilen arremana
+         // Gorde argitalpen eta egilen arremana
             try (FileWriter fw = new FileWriter(publAutFile)) {
                 for (Argitalpen p : argitalpenak.values()) {
                     if (p.getAutoreak() != null) {
-                        for (Autorea a : p.getAutoreak()) {
+                        Iterator<Autorea> itr = p.getAutoreak().iterator();
+                        while (itr.hasNext()) {
+                            Autorea a = itr.next();
                             fw.write(p.getId() + "#" + a.getId() + "\n");
                         }
                     }
@@ -255,12 +258,15 @@ public class ArgitaelpenZerrenda {
             try (FileWriter fw = new FileWriter(aipFile)) {
                 for (Argitalpen p : argitalpenak.values()) {
                     if (p.getAipamenak() != null) {
-                        for (String aip : p.getAipamenak()) {
+                        Iterator<String> itr = p.getAipamenak().iterator();
+                        while (itr.hasNext()) {
+                            String aip = itr.next();
                             fw.write(p.getId() + "#" + aip + "\n");
                         }
                     }
                 }
             }
+
 
             System.out.println("✅ Fitxategi guztiak eguneratuta ondo!");
 

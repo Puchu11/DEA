@@ -1,6 +1,8 @@
 package prakt_1;
 
-import prakt2.UnorderedDoubleLinkedList;
+import java.util.Iterator;
+
+import prakt2.*;
 
 public class Argitalpen implements Comparable<Argitalpen> {
     private String id;
@@ -85,7 +87,9 @@ public class Argitalpen implements Comparable<Argitalpen> {
         if (autoreak.isEmpty()) {
             System.out.println("ez du autorearik");
         } else {
-            for (Autorea a : autoreak) {
+            Iterator<Autorea> itr = autoreak.iterator();
+            while (itr.hasNext()) {
+                Autorea a = itr.next();
                 System.out.print("#" + a.getIzena() + " ");
             }
             System.out.println();
@@ -96,12 +100,15 @@ public class Argitalpen implements Comparable<Argitalpen> {
         if (aipamenak.isEmpty()) {
             System.out.println("ez du aipamenik");
         } else {
-            for (String a : aipamenak) {
+            Iterator<String> itr = aipamenak.iterator();
+            while (itr.hasNext()) {
+                String a = itr.next();
                 System.out.print("#" + a + " ");
             }
             System.out.println();
         }
     }
+
 
     @Override
     public int compareTo(Argitalpen other) {
