@@ -1,5 +1,6 @@
 package prakt2;
 
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class UnorderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements UnorderedListADT<T> {
@@ -70,6 +71,37 @@ public class UnorderedDoubleLinkedList<T> extends DoubleLinkedList<T> implements
 		}
 	}//KOSTUA=LINEALA O(n) kasu txarrenean, n=count;
 	
-	
+	@Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private Node<T> current = last;
 
+            @Override
+            public boolean hasNext() {
+                return current != null;
+            }
+
+            @Override
+            public T next() {
+                if (!hasNext()) throw new NoSuchElementException();
+                T elem = current.data;
+                current = current.prev;
+                return elem;
+            }
+        };
+    }
+
+    // --- toString ---
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("[");
+        Node<T> current = last;
+        while (current != null) {
+            sb.append(current.data);
+            if (current.next != null) sb.append(", ");
+            current = current.prev;
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 }
