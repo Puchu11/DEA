@@ -1,6 +1,7 @@
 package prakt_1;
 
 import java.util.ArrayList;
+import prakt2.UnorderedDoubleLinkedList;
 
 public class Argitalpen implements Comparable<Argitalpen> {
 	private String id;
